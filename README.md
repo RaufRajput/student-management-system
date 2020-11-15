@@ -30,9 +30,9 @@
   |               | If the last name is not in the database you will be returned with a message "student with last not found
   
   | Method        | Description| URL   |
-    | ------------- |:-------------:| -----|
-    | DELETE        | Delete a student by sending its ID  | http://localhost:8080/student-management-system/api/v1/student/deleteStudent/{id}
-    |               | If the ID cannot be find in the database you will get a message "Student with ID {id} does not exist, try again, or if deleted you will get message" Student with ID {id} is deleted." 
+  | ------------- |:-------------:| -----|
+  | DELETE        | Delete a student by sending its ID  | http://localhost:8080/student-management-system/api/v1/student/deleteStudent/{id}
+  |               | If the ID cannot be find in the database you will get a message "Student with ID {id} does not exist, try again, or if deleted you will get message" Student with ID {id} is deleted." 
      
     
     
