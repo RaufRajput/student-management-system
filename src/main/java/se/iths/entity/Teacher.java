@@ -1,5 +1,6 @@
 package se.iths.entity;
 
+
 import javax.persistence.*;
 import javax.validation.constraints.NotEmpty;
 import javax.validation.constraints.NotNull;
@@ -7,7 +8,7 @@ import java.util.HashSet;
 import java.util.Set;
 
 @Entity
-public class Student {
+public class Teacher {
 
     @Id
     @GeneratedValue(strategy = GenerationType.AUTO)
@@ -20,24 +21,46 @@ public class Student {
     private String email;
     private String phoneNumber;
 
-    @ManyToMany(cascade = CascadeType.PERSIST)
+    @OneToMany(mappedBy = "teacher", cascade = CascadeType.PERSIST)
     private Set<Subject> subjects = new HashSet<>();
 
     public void addSubject(Subject subject){
         subjects.add(subject);
-        subject.getStudents().add(this);
-
+        subject.setTeacher(this);
     }
 
-    public Student(@NotEmpty String firstName, @NotEmpty String lastName, @NotNull String email, String phoneNumber) {
+    public void removeSubject(Subject subject) {
+        subject.remove(subject);
+        subject.setTeacher(null);
+    }
+
+
+    public Teacher(@NotEmpty String firstName, @NotEmpty String lastName, @NotNull String email, String phoneNumber) {
         this.firstName = firstName;
         this.lastName = lastName;
         this.email = email;
         this.phoneNumber = phoneNumber;
     }
 
-    public Student(){
+//    public Teacher(@NotEmpty String firstName, @NotEmpty String lastName, @NotNull String email, String phoneNumber, Set<Student> students) {
+//        this.firstName = firstName;
+//        this.lastName = lastName;
+//        this.email = email;
+//        this.phoneNumber = phoneNumber;
+//        this.students = students;
+//    }
+
+    public Teacher(){
+
     }
+
+//    public Set<Student> getStudents(){
+//        return students;
+//    }
+//
+//    public void setStudents(Set<Student> students){
+//        this.students = students;
+//    }
 
     public Long getId() {
         return id;
@@ -59,8 +82,8 @@ public class Student {
         return lastName;
     }
 
-    public void setLastName(String lastname) {
-        this.lastName = lastname;
+    public void setLastName(String lastName) {
+        this.lastName = lastName;
     }
 
     public String getEmail() {
@@ -78,4 +101,14 @@ public class Student {
     public void setPhoneNumber(String phoneNumber) {
         this.phoneNumber = phoneNumber;
     }
+
+
+
+
+
+
 }
+
+
+
+
